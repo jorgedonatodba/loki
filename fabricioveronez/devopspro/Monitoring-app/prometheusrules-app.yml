@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: pedelogo-app-rules
+  labels:
+    prometheus: main
+    component: rules
+    desc: pedelogo-app-rules
+    app: api
+spec:
+  groups:
+    - name: pedelogo-app-WebApiAlert
+      rules:
+        - alert: pedelogo-app-WebApiAlert
+          expr: rate(http_requests_received_total[1m]) > 0.01
+          for: 30s
+          labels:
+            team: api
+            desc: pedelogo-app-rules 
+          annotations:
+            titulo: "Número alto de requisições"
+            descricao: "{{$labels.instance}} está com um número alto de requisições. ({{$value}}s)"

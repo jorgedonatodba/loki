@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: pedelogo-app-config-alertmanager
+  labels:
+    alertmanager: kube-prometheus-stack-alertmanager
+spec:
+  route:
+    groupBy: ['alertname']
+    groupWait: 15s
+    groupInterval: 15s
+    repeatInterval: 1m
+    receiver: 'AlertaPedelogo-app'
+    routes:
+    - matchers:
+      - name: 'team'
+        value: 'api'
+      repeatInterval: 1m    
+  receivers:
+  - name: 'AlertaPedelogo-app'
+    webhookConfigs:
+    - url: 'https://webhook.site/b668788a-b0be-4d79-b816-bdcd5935ca10'
