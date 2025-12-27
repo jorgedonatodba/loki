@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2025-12-17T17:13:14Z"
+  labels:
+    component: apiserver
+    provider: kubernetes
+  name: kubernetes
+  namespace: default
+  resourceVersion: "198"
+  uid: 21b24761-dccf-4a40-bb67-427839310ffa
+spec:
+  clusterIP: 10.108.32.1
+  clusterIPs:
+  - 10.108.32.1
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  sessionAffinity: None
+  type: LoadBalancer 

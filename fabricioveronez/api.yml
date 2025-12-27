@@ -11,10 +11,11 @@ spec:
     metadata:
       labels:
         app: api
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/path: /metrics
-        prometheus.io/port: "80"
+        monitoring: enabled
+      # annotations:
+      #   prometheus.io/scrape: "true"
+      #   prometheus.io/path: /metrics
+      #   prometheus.io/port: "80"
     spec:
       containers:
         - name: pedelogo-api
@@ -31,8 +32,9 @@ metadata:
 spec:
   selector:
     app: api
+    monitoring: enabled
   ports:
     - name: http
       port: 8082
       targetPort: 80
-  type: LoadBalancer 
+  type: ClusterIP

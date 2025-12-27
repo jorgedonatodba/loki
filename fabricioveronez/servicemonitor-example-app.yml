@@ -1,0 +1,28 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: example-app
+  labels:
+    team: frontend
+spec:
+  selector:
+    matchLabels:
+      app: example-app
+  endpoints:
+  - port: app
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: prometheus-self
+  namespace: monitoring
+  labels:
+    app: kube-prometheus-stack-prometheus
+spec:
+  endpoints:
+  - interval: 30s
+    port: http-web
+  selector:
+    matchLabels:
+      app: kube-prometheus-stack-prometheus  

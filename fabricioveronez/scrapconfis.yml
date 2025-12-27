@@ -1,0 +1,48 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: api
+  labels:
+    prometheus: test
+spec:
+  staticConfigs:
+    - labels:
+        job: api
+      targets:
+        - 192.168.15.101:8082
+  metricsPath: /metrics
+  scrapeInterval: 5s
+  scrapeTimeout: 2s
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: mongodb
+  labels:
+    prometheus: test
+spec:
+  staticConfigs:
+    - labels:
+        job: mongodb
+      targets:
+        - 192.168.15.101:9216
+  metricsPath: /metrics
+  scrapeInterval: 5s
+  scrapeTimeout: 2s
+
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: shenlong
+  labels:
+    prometheus: test
+spec:
+  staticConfigs:
+    - labels:
+        job: shenlong
+      targets:
+        - 192.168.15.101:8083
+  metricsPath: /metrics        
+  scrapeInterval: 5s
+  scrapeTimeout: 2s
